@@ -1,0 +1,21 @@
+@startuml
+actor "Админ" as Admin
+
+boundary "Основное окно(Добавить пользователя)" as MainWindow
+
+control "Проверка добавления пользователя" as CheckUser
+control "Пользователь добавлен" as AddUser
+control "Окно об успешном добавлении" as SuccesfulAddUserWindow
+control "Окно о неудаче добавления" as UnsuccessfulAddUserWindow
+
+entity "База пользователей" as DatabaseUser
+
+MainWindow --> CheckUser : "Нажата кнопка "Зарегистрировать""
+CheckUser --> AddUser : "Успех"
+CheckUser --> UnsuccessfulAddUserWindow : "Неудача"
+AddUser --> DatabaseUser
+CheckUser --> SuccesfulAddUserWindow
+
+
+Admin -- MainWindow
+@enduml

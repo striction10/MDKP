@@ -1,0 +1,36 @@
+@startuml
+
+state "Окно входа в программу" as loginWindow
+state "Основное окно" as mainWindow
+state "Добавить пользователя" as addUserWindow
+state "Удалить пользователя" as delUserWindow
+
+[*] --> loginWindow
+loginWindow --> [*] : Окно закрыто
+mainWindow --> [*] : Окно закрыто
+loginWindow : Пользователь может:
+loginWindow : 1. Ввести логин
+loginWindow : 2. Ввести пароль
+loginWindow : 3. Войти
+
+loginWindow -left-> mainWindow : Нажата кнопка "Войти"
+mainWindow -right-> loginWindow : Нажата кнопка "Выйти из системы"
+
+mainWindow : Пользователь может:
+mainWindow : 1. Выбрать вкладку "Добавить пользователя"
+mainWindow : 2. Выбрать вкладку "Удалить пользователя"
+
+mainWindow -down-> addUserWindow : Выбрана вкладка "Добавить пользователя"
+
+addUserWindow : Пользователь может:
+addUserWindow : 1. Заполнить информацию о новом пользователе
+addUserWindow : 1. Добавить нового пользователя
+
+mainWindow -down-> delUserWindow : Выбрана вкладка "Удалить пользователя"
+
+delUserWindow : Пользователь может:
+delUserWindow : 1. Отсортировать всех пользователей
+delUserWindow : 2. Удалить нужного пользователя
+
+@enduml
+

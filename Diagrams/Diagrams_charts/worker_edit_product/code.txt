@@ -1,0 +1,23 @@
+@startuml
+actor "Бухгалтер" as Worker
+
+boundary "Основное окно(Редактировать продукт)" as MainWindow
+
+control "Редактировать информацию" as ChangeInfoProduct
+control "Окно о неудаче сохраниения" as UnsuccessfulChangeProductWindow
+control "Окно об удачном сохраниении" as SuccessfulChangeProductWindow
+control "Сохранение изменений" as SaveChangeProduct
+control "Загрузка базы" as LoadDatabase
+
+entity "База продуктов" as DatabaseProduct
+
+MainWindow --> ChangeInfoProduct : "Нажата кнопка "Редактировать продукт""
+ChangeInfoProduct --> SaveChangeProduct : "Нажата кнопка "Сохранить изменения"""
+MainWindow --> LoadDatabase
+SaveChangeProduct --> UnsuccessfulChangeProductWindow : "Неудача"
+SaveChangeProduct --> SuccessfulChangeProductWindow : "Удача"
+SaveChangeProduct --> DatabaseProduct : "Удача"
+LoadDatabase --> DatabaseProduct
+
+Worker -- MainWindow
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+actor "Админ" as Admin
+
+boundary "Основное окно(Удалить пользователя)" as MainWindow
+
+control "Удаление пользователя" as DeleteUser
+control "Загрузка базы" as DatabaseLoad
+
+entity "База пользователей" as DatabaseUser
+
+MainWindow --> DeleteUser : "Нажата кнопка "Удаление пользователя""
+MainWindow --> DatabaseLoad
+DeleteUser --> DatabaseUser
+DatabaseLoad --> DatabaseUser
+
+Admin -- MainWindow
+@enduml

@@ -1,0 +1,47 @@
+@startuml
+
+state "Окно входа в программу" as loginWindow
+state "Основное окно" as mainWindow
+state "Добавить продукт" as addThingWindow
+state "Редактировать продукт" as editThingWindow
+state "Просмотр доставок" as seeAllDelivery
+
+[*] --> loginWindow
+loginWindow --> [*] : Окно закрыто
+mainWindow --> [*] : Окно закрыто
+loginWindow : Пользователь может:
+loginWindow : 1. Ввести логин
+loginWindow : 2. Ввести пароль
+loginWindow : 3. Войти
+
+loginWindow -left-> mainWindow : Нажата кнопка "Войти"
+mainWindow -right-> loginWindow : Нажата кнопка "Выйти из системы"
+
+mainWindow : Пользователь может:
+mainWindow : 1. Выбрать вкладку "Добавить продукт"
+mainWindow : 2. Выбрать вкладку "Редактировать продукт"
+mainWindow : 3. Выбрать вкладку "Просмотр доставок"
+
+mainWindow -down-> addThingWindow : Выбрана вкладка "Добавить продукт"
+
+addThingWindow : Пользователь может:
+addThingWindow : 1. Ввести необходимые данные о товаре
+addThingWindow : 2. Добавить товар
+
+mainWindow -down-> editThingWindow : Выбрана вкладка "Редактировать продукт"
+
+editThingWindow : Пользователь может:
+editThingWindow : 1. Отсортировать все товары
+editThingWindow : 2. Выбрать нужный товар
+editThingWindow : 3. Редактировать выбранный товар
+editThingWindow : 4. Удалить выбранный товар
+
+mainWindow -up->seeAllDelivery : Выбрана вкладка "Просмотр доставок"
+
+seeAllDelivery : Пользователь может:
+seeAllDelivery : 1. Отсортировать все текущие доставки
+seeAllDelivery : 2. Посмотреть все текущие доставки
+
+@enduml
+
+

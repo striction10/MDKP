@@ -1,0 +1,25 @@
+@startuml
+
+actor Admin
+
+boundary mainMenu
+
+entity database_user
+
+control message
+
+mainMenu -> database_user : load database
+Admin -> mainMenu : user search
+Admin -> mainMenu : button pressed
+mainMenu -> mainMenu : check
+alt user found
+mainMenu -> database_user : mark for deletion
+database_user --> mainMenu : status
+mainMenu --> Admin : successful
+else 
+mainMenu -> message : show
+message --> mainMenu
+mainMenu --> Admin
+end
+
+@enduml

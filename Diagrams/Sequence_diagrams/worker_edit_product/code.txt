@@ -1,0 +1,26 @@
+@startuml
+
+actor Worker
+
+boundary mainMenu
+
+entity database_product
+
+boundary change_information
+control message
+
+mainMenu -> database_product : load database
+Worker -> mainMenu : product search
+Worker -> mainMenu : button pressed
+mainMenu -> change_information : show
+Worker -> change_information : edit product
+change_information -> change_information : check
+alt data is correct
+change_information -> database_product : save change
+change_information --> Worker : successful
+else 
+change_information -> message : show
+message --> Worker : error
+end
+
+@enduml

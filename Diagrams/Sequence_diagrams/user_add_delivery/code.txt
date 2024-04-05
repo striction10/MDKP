@@ -1,0 +1,25 @@
+@startuml
+
+actor User
+
+boundary mainMenu
+
+entity database_order
+
+control message
+
+mainMenu -> database_order : load database
+User -> mainMenu : search for delivery
+User -> mainMenu : button pressed
+mainMenu -> mainMenu : check
+alt order is processed
+mainMenu -> database_order : create
+database_order --> mainMenu : status
+mainMenu --> User : successful
+else 
+mainMenu -> message : show
+message --> mainMenu
+mainMenu --> User
+end
+
+@enduml

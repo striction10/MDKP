@@ -1,0 +1,24 @@
+@startuml
+
+actor Admin
+
+boundary mainMenu
+
+entity database_user
+
+control message
+
+Admin -> mainMenu : data input
+Admin -> mainMenu : button pressed
+mainMenu -> mainMenu : check
+alt data is correct
+mainMenu -> database_user : create
+database_user --> mainMenu : status
+mainMenu --> Admin : successful
+else incorrect data
+mainMenu -> message : show
+message --> mainMenu
+mainMenu --> Admin
+end
+
+@enduml

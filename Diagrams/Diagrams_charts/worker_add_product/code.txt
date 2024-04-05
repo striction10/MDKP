@@ -1,0 +1,20 @@
+@startuml
+actor "Бухгалтер" as Worker
+
+boundary "Основное окно(Добавить продукт)" as MainWindow
+
+control "Проверка добавления товара" as CheckProduct
+control "Товар добавлен" as AddProduct
+control "Окно об успешном добавлении" as SuccesfulAddProductWindow
+control "Окно о неудаче добавления" as UnsuccessfulAddProductWindow
+
+entity "База продуктов" as DatabaseProduct
+
+MainWindow --> CheckProduct : "Нажата кнопка "Добавить товар""
+CheckProduct --> AddProduct : "Успех"
+CheckProduct --> UnsuccessfulAddProductWindow : "Неудача"
+AddProduct --> DatabaseProduct
+CheckProduct --> SuccesfulAddProductWindow
+
+Worker -- MainWindow
+@enduml

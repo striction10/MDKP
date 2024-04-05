@@ -1,0 +1,16 @@
+@startuml
+
+actor Worker
+
+boundary mainMenu
+
+entity database_delivery
+
+control sort_delivery
+
+Worker -> mainMenu
+mainMenu -> database_delivery : load database
+Worker -> mainMenu : button pressed
+mainMenu -> sort_delivery
+
+@enduml

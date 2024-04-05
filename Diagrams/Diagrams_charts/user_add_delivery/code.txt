@@ -1,0 +1,23 @@
+@startuml
+actor "Заказчик" as User
+
+boundary "Основное окно(Список товаров)" as MainWindow
+
+control "Загрузка базы товаров" as LoadDatabase
+control "Оформить заказ" as Design
+control "Окно об успешном оформлении" as SuccesfulDesign
+control "Окно о неудаче оформления" as UnsuccesfulDesign
+control "Заказ оформлен" as SuccesfulDelivery
+
+entity "База доставок" as DatabaseDelivery
+
+MainWindow --> LoadDatabase
+MainWindow --> Design : "Нажата кнопка "Оформить заказ""
+Design --> SuccesfulDesign : "Успех"
+Design --> UnsuccesfulDesign : "Неудача"
+Design --> SuccesfulDelivery
+SuccesfulDelivery --> DatabaseDelivery
+LoadDatabase --> DatabaseDelivery
+
+User -- MainWindow
+@enduml

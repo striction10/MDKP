@@ -1,0 +1,24 @@
+@startuml
+
+actor Worker
+
+boundary mainMenu
+
+entity database_product
+
+control message
+
+Worker -> mainMenu : data input
+Worker -> mainMenu : button pressed
+mainMenu -> mainMenu : check
+alt data is correct
+mainMenu -> database_product : create
+database_product --> mainMenu : status
+mainMenu --> Worker : successful
+else 
+mainMenu -> message : show
+message --> mainMenu
+mainMenu --> Worker
+end
+
+@enduml

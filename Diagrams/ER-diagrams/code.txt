@@ -1,0 +1,37 @@
+@startuml
+entity Users {
+  * id : int
+  --
+  login : string
+  password : string
+  name : string
+  address : string
+  telephone : int
+  attribute : string
+}
+entity Products {
+  * id : int
+  --
+  name : int
+  information : string
+  price : float
+  quantity : int
+  delivery_availability : bool
+  type_delivery : string
+}
+entity Orders {
+  * id : int
+  --
+  active_deliverys : int
+  id_user : int
+  id_products : int
+  price : float
+  date_success : date
+  address : string
+  quantity : int
+  type_delivery : string
+}
+
+Products }|..|{ Orders
+Users ||..|| Orders
+@enduml

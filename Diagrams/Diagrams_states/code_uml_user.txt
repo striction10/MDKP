@@ -1,0 +1,42 @@
+@startuml
+
+state "Окно входа в программу" as loginWindow
+state "Основное окно" as mainWindow
+state "Список товаров" as listThingWindow
+state "Мои доставки" as myDeliveryWindow
+state "Оформить заказ" as acceptDelivery
+
+[*] --> loginWindow
+loginWindow --> [*] : Окно закрыто
+mainWindow --> [*] : Окно закрыто
+loginWindow : Пользователь может:
+loginWindow : 1. Ввести логин
+loginWindow : 2. Ввести пароль
+loginWindow : 3. Войти
+
+loginWindow -left-> mainWindow : Нажата кнопка "Войти"
+mainWindow -right-> loginWindow : Нажата кнопка "Выйти из системы"
+
+mainWindow : Пользователь может:
+mainWindow : 1. Выбрать вкладку "Список товаров"
+mainWindow : 2. Выбрать вкладку "Мои доставки"
+
+mainWindow -down-> listThingWindow : Выбрана вкладка "Список товаров"
+
+listThingWindow : Пользователь может:
+listThingWindow : 1. Поссмотреть все товары
+listThingWindow : 2. Отсортировать товары
+
+mainWindow -up-> myDeliveryWindow : Выбрана вкладка "Мои доставки"
+
+myDeliveryWindow : Пользователь может:
+myDeliveryWindow : 1. Отсортировать все оформленные доставки
+myDeliveryWindow : 2. Посмотреть всю информацию о оформленных доставках
+
+listThingWindow -right-> acceptDelivery : Нажата кнопка "Оформить заказ"
+
+acceptDelivery : Пользователь может:
+acceptDelivery : 1. Оформить заказ
+acceptDelivery : 2. Отменить оформление
+
+@enduml

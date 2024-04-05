@@ -1,0 +1,51 @@
+@startuml
+
+class MainMenu {
+db_user : DbUser
+db_order : DbOrder
+db_product : DbProduct
+on_addUser_ButtonPressed()
+on_deleteUser_ButtonPressed()
+on_checkout_ButtonPressed()
+on_addProduct_ButtonPressed()
+checkUserExists()
+checkProductExists()
+on_dataInput()
+}
+
+class DbUser {
+create() : bool
+mark_for_deletion() : bool
+}
+
+class DbProduct {
+create() : bool
+}
+
+class User {
+name : string
+address : string
+telephone : string
+}
+
+class Message {
+show()
+}
+
+class DbOrder {
+load_database() : orders
+}
+
+class Product {
+quantity : int
+description : string
+delivery_availability : bool
+}
+
+DbUser --> User
+DbOrder --> Product
+MainMenu --> DbProduct
+MainMenu --> DbUser
+MainMenu --> Message
+MainMenu --> DbOrder
+@enduml   

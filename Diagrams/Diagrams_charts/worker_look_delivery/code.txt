@@ -1,0 +1,16 @@
+@startuml
+actor "Бухгалтер" as Worker
+
+boundary "Основное окно(Посмотреть доставки)" as MainWindow
+
+control "Отсортировать товар" as SortProduct
+control "Загрузка базы" as LoadDatabase
+
+entity "База доставок" as DeliveryDatabase
+
+MainWindow --> SortProduct : "Нажата кнопка "Отсортировать товар""
+MainWindow --> LoadDatabase
+LoadDatabase --> DeliveryDatabase
+
+Worker -- MainWindow
+@enduml
