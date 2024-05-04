@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,8 +11,10 @@ CONFIG += c++17
 SOURCES += \
     adminwindow.cpp \
     adminwindowdeluser.cpp \
+    database.cpp \
     main.cpp \
     authorization.cpp \
+    user.cpp \
     useractivedeliverywindow.cpp \
     userorderlistwindow.cpp \
     workeractivedelivery.cpp \
@@ -23,6 +25,8 @@ HEADERS += \
     adminwindow.h \
     adminwindowdeluser.h \
     authorization.h \
+    database.h \
+    user.h \
     useractivedeliverywindow.h \
     userorderlistwindow.h \
     workeractivedelivery.h \

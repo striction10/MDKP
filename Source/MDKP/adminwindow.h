@@ -20,6 +20,8 @@ private slots:
 
     void on_action_3_triggered();
 
+    void on_pushButton_1_clicked();
+
 private:
     Ui::AdminWindow *ui;
 };

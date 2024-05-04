@@ -40,36 +40,6 @@
      <string>Отсортировать</string>
     </property>
    </widget>
-   <widget class="QColumnView" name="columnView_4">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>40</y>
-      <width>131</width>
-      <height>381</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_6">
-    <property name="geometry">
-     <rect>
-      <x>630</x>
-      <y>40</y>
-      <width>181</width>
-      <height>381</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>40</y>
-      <width>101</width>
-      <height>381</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
@@ -81,16 +51,6 @@
     </property>
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_3">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>40</y>
-      <width>131</width>
-      <height>381</height>
-     </rect>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -130,26 +90,6 @@
     </property>
     <property name="text">
      <string>Контактное лицо</string>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_5">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>40</y>
-      <width>141</width>
-      <height>381</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_2">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>40</y>
-      <width>101</width>
-      <height>381</height>
-     </rect>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -264,15 +204,9 @@
      </rect>
     </property>
    </widget>
-   <zorder>columnView</zorder>
    <zorder>tableWidget</zorder>
    <zorder>pushButton</zorder>
    <zorder>pushButton_2</zorder>
-   <zorder>columnView_4</zorder>
-   <zorder>columnView_6</zorder>
-   <zorder>columnView_3</zorder>
-   <zorder>columnView_5</zorder>
-   <zorder>columnView_2</zorder>
    <zorder>label</zorder>
    <zorder>columnView_7</zorder>
    <zorder>label_2</zorder>
