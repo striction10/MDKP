@@ -112,3 +112,21 @@ bool Database::addUsers(const QString &login, const QString &password, const QSt
     }
     return false;
 }
+
+QVector<User> Database::showUsers() {
+    QVector<User> users;
+    User user;
+    QSqlQuery query;
+    query.exec("SELECT * FROM Users");
+    while (query.next()) {
+        user.login = query.value(1).toString();
+        user.password = query.value(2).toString();
+        user.name = query.value(3).toString();
+        user.address = query.value(4).toString();
+        user.telephone = query.value(5).toString();
+        user.contact_face = query.value(6).toString();
+        user.attribute = query.value(7).toString();
+        users.append(user);
+    }
+    return users;
+}

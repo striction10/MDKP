@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <user.h>
 
 class Database : public QObject
 {
@@ -17,6 +18,7 @@ public:
     static bool addUsers(const QString &login, const QString &password, const QString &name,
                          const QString &address, const QString &telephone,
                          const QString &contact_face, const QString &attribute);
+    QVector<User> showUsers();
 private:
     static void createDatabase();
     static void firstInsert();

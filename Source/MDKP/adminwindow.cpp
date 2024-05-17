@@ -17,7 +17,22 @@ AdminWindow::AdminWindow(QWidget *parent) :
 
     ui->lineEditLogin->setValidator(
         new QRegularExpressionValidator(
-            QRegularExpression(R"([a-zA-Z_]{25})"))); // TODO: emptyu string?
+            QRegularExpression(R"([a-zA-Z_]{25})")));
+    ui->lineEditPassword->setValidator(
+        new QRegularExpressionValidator(
+            QRegularExpression(R"([a-zA-Z_0-9!@#$%^&*()]{25})")));
+    ui->lineEditName->setValidator(
+        new QRegularExpressionValidator(
+            QRegularExpression(R"([a-zа-яА-ЯA-Z"]{25})")));
+    ui->lineEditAddress->setValidator(
+        new QRegularExpressionValidator(
+            QRegularExpression(R"([a-zа-яА-ЯA-Z,0-9]{30})")));
+    ui->lineEditTelephone->setValidator(
+        new QRegularExpressionValidator(
+            QRegularExpression(R"([0-9]{11})")));
+    ui->lineEditContactFace->setValidator(
+        new QRegularExpressionValidator(
+            QRegularExpression(R"([a-zа-яА-ЯA-Z]{25})")));
 }
 
 AdminWindow::~AdminWindow()
@@ -45,11 +60,11 @@ void AdminWindow::on_action_3_triggered() {
 
 void AdminWindow::on_pushButton_1_clicked() {
     QString login = ui->lineEditLogin->text();
-    QString password = ui->lineEdit_2->text();
-    QString name = ui->lineEdit_3->text();
-    QString address = ui->lineEdit_4->text();
-    QString telephone = ui->lineEdit_5->text();
-    QString contact_face = ui->lineEdit_6->text();
+    QString password = ui->lineEditPassword->text();
+    QString name = ui->lineEditName->text();
+    QString address = ui->lineEditAddress->text();
+    QString telephone = ui->lineEditTelephone->text();
+    QString contact_face = ui->lineEditContactFace->text();
     QString attribute = ui->comboBox->currentText();
     if (login.isEmpty()) {
         QMessageBox::warning(this, "Внимание", "Логин пуст");
@@ -59,8 +74,30 @@ void AdminWindow::on_pushButton_1_clicked() {
         QMessageBox::warning(this, "Внимание", "Данный логин уже занят");
         return;
     }
+    if (password.isEmpty()) {
+        QMessageBox::warning(this, "Внимание", "Пароль пуст");
+        return;
+    }
+    if (name.isEmpty()) {
+        QMessageBox::warning(this, "Внимание", "Имя пустое");
+        return;
+    }
+    if (address.isEmpty()) {
+        QMessageBox::warning(this, "Внимание", "Адрес пустой");
+        return;
+    }
+    if (telephone.isEmpty() || telephone.length() != 11) {
+        QMessageBox::warning(this, "Внимание", "Телефон не заполнен полностью");
+        return;
+    }
+    if (contact_face.isEmpty()) {
+        QMessageBox::warning(this, "Внимание", "Контактное лицо пустое");
+        return;
+    }
     else {
         Database::addUsers(login, password, name, address, telephone, contact_face, attribute);
+        QMessageBox::information(this, "Информация", "Пользователь успешно добавлен!");
+        return;
     }
 }
 

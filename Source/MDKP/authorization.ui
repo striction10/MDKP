@@ -10,6 +10,12 @@
     <height>246</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>456</width>
+    <height>246</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Authorization</string>
   </property>
@@ -30,7 +36,7 @@
      <string>Return</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_1">
+   <widget class="QLineEdit" name="lineEditLogin">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -43,7 +49,7 @@
      <string>Введите логин</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="lineEditPassword">
     <property name="geometry">
      <rect>
       <x>10</x>

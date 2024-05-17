@@ -22,8 +22,8 @@ Authorization::~Authorization()
 
 
 void Authorization::on_pushButton_1_clicked() {
-    QString login = ui->lineEdit_1->text();
-    QString password = ui->lineEdit_2->text();
+    QString login = ui->lineEditLogin->text();
+    QString password = ui->lineEditPassword->text();
     if (Database::searchAuthorization(login, password) && Database::checkAttribute(login) == "Admin") {
         AdminWindow *admin_window = new AdminWindow();
         admin_window->setWindowTitle("Администратор -> Добавить пользователя");

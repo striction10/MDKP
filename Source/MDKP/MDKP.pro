@@ -17,6 +17,7 @@ SOURCES += \
     user.cpp \
     useractivedeliverywindow.cpp \
     userorderlistwindow.cpp \
+    usersmodel.cpp \
     workeractivedelivery.cpp \
     workeradddelivery.cpp \
     workereditdelivery.cpp
@@ -29,6 +30,7 @@ HEADERS += \
     user.h \
     useractivedeliverywindow.h \
     userorderlistwindow.h \
+    usersmodel.h \
     workeractivedelivery.h \
     workeradddelivery.h \
     workereditdelivery.h

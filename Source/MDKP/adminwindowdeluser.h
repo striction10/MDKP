@@ -22,8 +22,6 @@ private slots:
 
 private:
     Ui::AdminWindowDelUser *ui;
-
-    void showUser();
 };
 
 #endif // ADMINWINDOWDELUSER_H

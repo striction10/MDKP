@@ -2,14 +2,18 @@
 #include "ui_adminwindowdeluser.h"
 #include <QSqlQuery>
 
+#include <database.h>
 #include <adminwindow.h>
 #include <authorization.h>
+#include "usersmodel.h"
 
 AdminWindowDelUser::AdminWindowDelUser(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::AdminWindowDelUser)
 {
     ui->setupUi(this);
+
+    ui->tableViewUsers->setModel(new UsersModel());
 }
 
 AdminWindowDelUser::~AdminWindowDelUser()
@@ -29,9 +33,4 @@ void AdminWindowDelUser::on_action_2_triggered() {
     AdminWindow *admin_window = new AdminWindow();
     admin_window->setWindowTitle("Администратор -> Добавить пользователя");
     admin_window->show();
-}
-
-void AdminWindowDelUser::showUser() {
-    QSqlQuery query;
-    query.exec("SELECT * FROM Users");
 }
