@@ -23,7 +23,16 @@
      </widget>
     </item>
     <item row="1" column="0" colspan="2">
-     <widget class="QTableView" name="tableViewUsers"/>
+     <widget class="QTableView" name="tableViewUsers">
+      <property name="styleSheet">
+       <string notr="true">QTableView {
+    background-color: black;
+    alternate-background-color: #545454;
+}
+
+</string>
+      </property>
+     </widget>
     </item>
     <item row="2" column="1">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -98,6 +107,9 @@
   <action name="action_2">
    <property name="text">
     <string>Добавить пользователя</string>
+   </property>
+   <property name="shortcut">
+    <string>Left</string>
    </property>
   </action>
   <action name="action_3">

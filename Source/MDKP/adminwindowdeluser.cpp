@@ -5,7 +5,6 @@
 #include <database.h>
 #include <adminwindow.h>
 #include <authorization.h>
-#include "usersmodel.h"
 
 AdminWindowDelUser::AdminWindowDelUser(QWidget *parent) :
     QMainWindow(parent),
@@ -13,7 +12,8 @@ AdminWindowDelUser::AdminWindowDelUser(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->tableViewUsers->setModel(new UsersModel());
+    users_model = new UsersModel();
+    ui->tableViewUsers->setModel(users_model);
 }
 
 AdminWindowDelUser::~AdminWindowDelUser()
@@ -34,3 +34,8 @@ void AdminWindowDelUser::on_action_2_triggered() {
     admin_window->setWindowTitle("Администратор -> Добавить пользователя");
     admin_window->show();
 }
+
+void AdminWindowDelUser::on_pushButtonSort_clicked() {
+    users_model->sortByLogin();
+}
+

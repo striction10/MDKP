@@ -161,6 +161,9 @@
    <property name="text">
     <string>Удалить пользователя</string>
    </property>
+   <property name="shortcut">
+    <string>Right</string>
+   </property>
   </action>
  </widget>
  <resources/>
