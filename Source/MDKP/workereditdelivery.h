@@ -2,6 +2,7 @@
 #define WORKEREDITDELIVERY_H
 
 #include <QMainWindow>
+#include "productmodel.h"
 
 namespace Ui {
 class WorkerEditDelivery;
@@ -22,8 +23,11 @@ private slots:
 
     void on_action_4_triggered();
 
+    void on_pushButtonSort_clicked();
+
 private:
     Ui::WorkerEditDelivery *ui;
+    ProductModel *products_model;
 };
 
 #endif // WORKEREDITDELIVERY_H

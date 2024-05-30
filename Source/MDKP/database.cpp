@@ -9,16 +9,27 @@ Database::Database(QObject *parent)
 void Database::createDatabase() {
     QSqlQuery query;
     if (!query.exec("CREATE TABLE IF NOT EXISTS Users ("
-               "ID INTEGER NOT NULL, "
-               "login TEXT NOT NULL, "
-               "password TEXT NOT NULL, "
-               "name TEXT NOT NULL, "
-               "address TEXT NOT NULL, "
+               "ID INTEGER NOT NULL,"
+               "login TEXT NOT NULL,"
+               "password TEXT NOT NULL,"
+               "name TEXT NOT NULL,"
+               "address TEXT NOT NULL,"
                "telephone TEXT NOT NULL,"
-               "contact_face TEXT NOT NULL, "
-               "attribute TEXT NOT NULL, "
+               "contact_face TEXT NOT NULL,"
+               "attribute TEXT NOT NULL,"
                "PRIMARY KEY(ID AUTOINCREMENT));")) {
         qDebug() << "Не удалось создать таблицу Users";
+    }
+    if (!query.exec("CREATE TABLE IF NOT EXISTS Products ("
+                "ID INTEGER NOT NULL,"
+                "name_product TEXT NOT NULL,"
+                "info_product TEXT NOT NULL,"
+                "price TEXT NOT NULL, "
+                "count_product INTEGER NOT NULL, "
+                "delivery_status TEXT NOT NULL,"
+                "speed_delivery TEXT,"
+                "PRIMARY KEY(ID AUTOINCREMENT));")) {
+            qDebug() << "Не удалось создать таблицу Products";
     }
 }
 
@@ -33,7 +44,7 @@ void Database::firstInsert() {
 void Database::connectToDatabase() {
     QSqlDatabase db;
     int count = 0;
-    const QString way_db = "/Users/admin/Documents/Source/DB/mdkp_database_v2.db";
+    const QString way_db = "/Users/admin/Documents/Source/DB/mdkp_database.db";
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(way_db);
     if (!db.open()) {
@@ -129,4 +140,55 @@ QVector<User> Database::showUsers() {
         users.append(user);
     }
     return users;
+}
+
+bool Database::checkProduct(const QString &product_name) {
+    QSqlQuery query;
+    query.exec("SELECT * FROM Products");
+    while (query.next()) {
+        QString db_name_product = query.value("name_product").toString();
+        if (product_name == db_name_product) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Database::addProduct(const QString &name_product, const QString &info_product,
+                          const QString &price, const int count_product, const QString delivery_status,
+                          const QString &speed_delivery) {
+    QSqlQuery in_query;
+    in_query.prepare("INSERT INTO Products (name_product, info_product, price, count_product, delivery_status, speed_delivery)"
+                     "VALUES (:name, :info, :price, :count, :status, :speed)");
+    in_query.bindValue(":name", name_product);
+    in_query.bindValue(":info", info_product);
+    in_query.bindValue(":price", price);
+    in_query.bindValue(":count", count_product);
+    in_query.bindValue(":status", delivery_status);
+    in_query.bindValue(":speed", speed_delivery);
+    if (!in_query.exec()) {
+        qDebug() << "Не удалось добавить " + name_product;
+        return false;
+    }
+    else {
+        return true;
+    }
+    return false;
+}
+
+QVector<Product> Database::showProduct() {
+    QVector<Product> products;
+    Product product;
+    QSqlQuery query;
+    query.exec("SELECT * FROM Products");
+    while (query.next()) {
+        product.name_product = query.value(1).toString();
+        product.info_product = query.value(2).toString();
+        product.price = query.value(3).toString();
+        product.count_product = query.value(4).toInt();
+        product.delivery_status = query.value(5).toString();
+        product.speed_delivery = query.value(6).toString();
+        products.append(product);
+    }
+    return products;
 }

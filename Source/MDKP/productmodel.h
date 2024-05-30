@@ -1,26 +1,26 @@
-#ifndef USERSMODEL_H
-#define USERSMODEL_H
+#ifndef PRODUCTMODEL_H
+#define PRODUCTMODEL_H
 
 #include <QAbstractTableModel>
 #include <QVector>
 
-#include "user.h"
+#include "product.h"
 
-class UsersModel : public QAbstractTableModel
+class ProductModel : public QAbstractTableModel
 {
 public:
-    explicit UsersModel(QObject *parent = nullptr);
+    explicit ProductModel(QObject *parent = nullptr);
 public:
     int rowCount(const QModelIndex &parent) const;
     int columnCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
-    void sortByLogin();
+    void sortByName();
 
 private:
-    QVector<User> m_users;
+    QVector<Product> m_product;
     int direction = 0;
 };
 
-#endif // USERSMODEL_H
+#endif

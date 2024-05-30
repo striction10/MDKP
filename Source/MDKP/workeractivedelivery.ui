@@ -6,112 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>893</width>
-    <height>509</height>
+    <width>880</width>
+    <height>505</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>40</y>
-      <width>131</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Логин пользователя</string>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_6">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>20</y>
-      <width>101</width>
-      <height>51</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>40</y>
-      <width>141</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Активные доставки</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>40</y>
-      <width>151</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Справочная информация</string>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_5">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>20</y>
-      <width>291</width>
-      <height>51</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_8">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>20</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>20</y>
-      <width>141</width>
-      <height>331</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>40</y>
-      <width>101</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Тип доставки</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>740</x>
+      <x>710</x>
       <y>360</y>
-      <width>111</width>
+      <width>141</width>
       <height>31</height>
      </rect>
     </property>
@@ -119,113 +27,25 @@
      <string>Отсортировать</string>
     </property>
    </widget>
-   <widget class="QColumnView" name="columnView_4">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>20</y>
-      <width>141</width>
-      <height>51</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>40</y>
-      <width>61</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Название</string>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_2">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>20</y>
-      <width>291</width>
-      <height>331</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_10">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>141</width>
-      <height>51</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_9">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>141</width>
-      <height>331</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>20</y>
-      <width>661</width>
-      <height>331</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_3">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>20</y>
-      <width>101</width>
-      <height>331</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_7">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>20</y>
-      <width>151</width>
+      <width>831</width>
       <height>331</height>
      </rect>
     </property>
    </widget>
    <zorder>tableWidget</zorder>
-   <zorder>columnView_7</zorder>
-   <zorder>columnView_2</zorder>
-   <zorder>columnView_5</zorder>
-   <zorder>columnView_3</zorder>
-   <zorder>columnView_9</zorder>
-   <zorder>columnView_10</zorder>
-   <zorder>label_6</zorder>
-   <zorder>columnView_6</zorder>
-   <zorder>label_3</zorder>
-   <zorder>columnView_8</zorder>
-   <zorder>columnView</zorder>
-   <zorder>label_5</zorder>
    <zorder>pushButton</zorder>
-   <zorder>label_2</zorder>
-   <zorder>columnView_4</zorder>
-   <zorder>label_4</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>893</width>
+     <width>880</width>
      <height>37</height>
     </rect>
    </property>

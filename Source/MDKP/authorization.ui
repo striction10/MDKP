@@ -16,6 +16,12 @@
     <height>246</height>
    </size>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>456</width>
+    <height>246</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Authorization</string>
   </property>

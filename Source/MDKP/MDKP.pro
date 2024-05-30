@@ -14,6 +14,8 @@ SOURCES += \
     database.cpp \
     main.cpp \
     authorization.cpp \
+    product.cpp \
+    productmodel.cpp \
     user.cpp \
     useractivedeliverywindow.cpp \
     userorderlistwindow.cpp \
@@ -27,6 +29,8 @@ HEADERS += \
     adminwindowdeluser.h \
     authorization.h \
     database.h \
+    product.h \
+    productmodel.h \
     user.h \
     useractivedeliverywindow.h \
     userorderlistwindow.h \

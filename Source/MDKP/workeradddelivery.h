@@ -22,6 +22,12 @@ private slots:
 
     void on_action_4_triggered();
 
+    void on_pushButtonAdd_clicked();
+
+    void on_radioButton_2_clicked(bool checked);
+
+    void on_radioButton_clicked(bool checked);
+
 private:
     Ui::WorkerAddDelivery *ui;
 };

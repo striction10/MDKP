@@ -26,11 +26,24 @@
      <widget class="QTableView" name="tableViewUsers">
       <property name="styleSheet">
        <string notr="true">QTableView {
-    background-color: black;
-    alternate-background-color: #545454;
+    selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0.5, y2: 0.5,
+                                stop: 0 DarkCyan);
 }
 
-</string>
+QHeaderView::section {
+	 border: 0.5px solid #C2C7CB;
+	 padding-left: 4px;
+	 background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #59AAFC);
+}
+
+QTableView::item
+{
+  border: 0px;
+}</string>
+      </property>
+      <property name="autoScrollMargin">
+       <number>16</number>
       </property>
      </widget>
     </item>

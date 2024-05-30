@@ -9,6 +9,8 @@ WorkerEditDelivery::WorkerEditDelivery(QWidget *parent)
     , ui(new Ui::WorkerEditDelivery)
 {
     ui->setupUi(this);
+    products_model = new ProductModel();
+    ui->tableViewProduct->setModel(products_model);
 }
 
 WorkerEditDelivery::~WorkerEditDelivery()
@@ -43,3 +45,9 @@ void WorkerEditDelivery::on_action_4_triggered() {
     worker_active_window->setWindowTitle("Бухгалтер -> Активные доставки");
     worker_active_window->show();
 }
+
+
+void WorkerEditDelivery::on_pushButtonSort_clicked() {
+    products_model->sortByName();
+}
+
