@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
-    <height>611</height>
+    <width>836</width>
+    <height>607</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -89,7 +89,7 @@ QTableView::item
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>799</width>
+     <width>836</width>
      <height>37</height>
     </rect>
    </property>
@@ -120,9 +120,6 @@ QTableView::item
   <action name="action_2">
    <property name="text">
     <string>Добавить пользователя</string>
-   </property>
-   <property name="shortcut">
-    <string>Left</string>
    </property>
   </action>
   <action name="action_3">

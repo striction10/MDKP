@@ -14,6 +14,7 @@ AdminWindowDelUser::AdminWindowDelUser(QWidget *parent) :
 
     users_model = new UsersModel();
     ui->tableViewUsers->setModel(users_model);
+    ui->tableViewUsers->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 AdminWindowDelUser::~AdminWindowDelUser()

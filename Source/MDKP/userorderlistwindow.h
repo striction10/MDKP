@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "productmodel.h"
+
 
 namespace Ui {
 class UserOrderListWindow;
@@ -21,8 +23,11 @@ private slots:
 
     void on_action_3_triggered();
 
+    void on_pushButtonSort_clicked();
+
 private:
     Ui::UserOrderListWindow *ui;
+    ProductModel *products_model;
 };
 
 #endif // USERORDERLISTWINDOW_H

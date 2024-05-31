@@ -8,6 +8,9 @@ UserOrderListWindow::UserOrderListWindow(QWidget *parent)
     , ui(new Ui::UserOrderListWindow)
 {
     ui->setupUi(this);
+    products_model = new ProductModel();
+    ui->tableViewProduct->setModel(products_model);
+    ui->tableViewProduct->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 UserOrderListWindow::~UserOrderListWindow()
@@ -33,3 +36,8 @@ void UserOrderListWindow::on_action_3_triggered() {
     active_delivery_window->setWindowTitle("Пользователь -> Мои доставки");
     active_delivery_window->show();
 }
+
+void UserOrderListWindow::on_pushButtonSort_clicked() {
+    products_model->sortByName();
+}
+

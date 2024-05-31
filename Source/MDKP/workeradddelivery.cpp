@@ -17,7 +17,7 @@ WorkerAddDelivery::WorkerAddDelivery(QWidget *parent)
             QRegularExpression(R"([а-яА-Яa-zA-Z_]{25})")));
     ui->lineEditInfo->setValidator(
         new QRegularExpressionValidator(
-            QRegularExpression(R"([а-яА-Яa-zA-Z_]{50})")));
+            QRegularExpression(R"([а-яА-Яa-zA-Z_ ]{50})")));
     ui->lineEditPrice->setValidator(
         new QRegularExpressionValidator(
             QRegularExpression(R"([0-9,]{7})")));

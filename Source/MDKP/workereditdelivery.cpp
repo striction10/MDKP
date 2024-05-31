@@ -11,6 +11,7 @@ WorkerEditDelivery::WorkerEditDelivery(QWidget *parent)
     ui->setupUi(this);
     products_model = new ProductModel();
     ui->tableViewProduct->setModel(products_model);
+    ui->tableViewProduct->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 WorkerEditDelivery::~WorkerEditDelivery()
