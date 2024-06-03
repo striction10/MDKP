@@ -16,9 +16,11 @@ public:
     static bool searchAuthorization(const QString &login, const QString &password);
     static QString checkAttribute(const QString &login);
     static bool checkLogin(const QString &login);
+    static bool checkDelStatus(const QString &login);
     static bool addUsers(const QString &login, const QString &password, const QString &name,
                          const QString &address, const QString &telephone,
                          const QString &contact_face, const QString &attribute);
+    static bool delUser(const QString &login);
     static bool checkProduct(const QString &name_product);
     static bool addProduct(const QString &name_product, const QString &info_product,
                            const QString &price, const int count_product, const QString delivery_status,

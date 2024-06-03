@@ -23,6 +23,8 @@ private slots:
 
     void on_pushButtonSort_clicked();
 
+    void on_pushButtonDel_clicked();
+
 private:
     Ui::AdminWindowDelUser *ui;
     UsersModel *users_model;

@@ -59,7 +59,7 @@ QTableView::item
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="pushButtonDel">
           <property name="text">
            <string>Удалить</string>
           </property>

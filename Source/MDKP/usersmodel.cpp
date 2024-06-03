@@ -79,7 +79,7 @@ QVariant UsersModel::headerData(int section, Qt::Orientation orientation, int ro
     return {};
 }
 
-void  UsersModel::sortByLogin() {
+void UsersModel::sortByLogin() {
     direction++;
     std::sort(m_users.begin(), m_users.end(), [this](const User& lhs, const User& rhs) {
         if (direction % 2) {

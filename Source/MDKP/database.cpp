@@ -17,6 +17,7 @@ void Database::createDatabase() {
                "telephone TEXT NOT NULL,"
                "contact_face TEXT NOT NULL,"
                "attribute TEXT NOT NULL,"
+               "del_status TEXT,"
                "PRIMARY KEY(ID AUTOINCREMENT));")) {
         qDebug() << "Не удалось создать таблицу Users";
     }
@@ -101,6 +102,19 @@ bool Database::checkLogin(const QString &login) {
     return false;
 }
 
+bool Database::checkDelStatus(const QString &login) {
+    QSqlQuery query;
+    query.exec("SELECT * FROM Users");
+    while (query.next()) {
+        QString db_login = query.value("login").toString();
+        QString del_status = query.value("del_status").toString();
+        if (login == db_login && del_status == "NULL") {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool Database::addUsers(const QString &login, const QString &password, const QString &name,
                         const QString &address, const QString &telephone,
                         const QString &contact_face, const QString &attribute) {
@@ -128,7 +142,7 @@ QVector<User> Database::showUsers() {
     QVector<User> users;
     User user;
     QSqlQuery query;
-    query.exec("SELECT * FROM Users");
+    query.exec("SELECT * FROM Users WHERE del_status = 'NULL'");
     while (query.next()) {
         user.login = query.value(1).toString();
         user.password = query.value(2).toString();
@@ -140,6 +154,21 @@ QVector<User> Database::showUsers() {
         users.append(user);
     }
     return users;
+}
+
+bool Database::delUser(const QString &login) {
+    QSqlQuery query;
+    query.exec("SELECT login FROM Users");
+    while (query.next()) {
+        QString db_login = query.value("login").toString();
+        if (login == db_login) {
+            query.prepare("UPDATE Users SET del_status = 'invisible' WHERE login = :login");
+            query.bindValue(":login", login);
+            query.exec();
+            return true;
+        }
+    }
+    return false;
 }
 
 bool Database::checkProduct(const QString &product_name) {

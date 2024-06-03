@@ -1,6 +1,7 @@
 #include "adminwindowdeluser.h"
 #include "ui_adminwindowdeluser.h"
 #include <QSqlQuery>
+#include <QMessageBox>
 
 #include <database.h>
 #include <adminwindow.h>
@@ -15,6 +16,7 @@ AdminWindowDelUser::AdminWindowDelUser(QWidget *parent) :
     users_model = new UsersModel();
     ui->tableViewUsers->setModel(users_model);
     ui->tableViewUsers->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableViewUsers->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
 }
 
 AdminWindowDelUser::~AdminWindowDelUser()
@@ -40,3 +42,23 @@ void AdminWindowDelUser::on_pushButtonSort_clicked() {
     users_model->sortByLogin();
 }
 
+void AdminWindowDelUser::on_pushButtonDel_clicked() {
+    QModelIndexList selectedRows = ui->tableViewUsers->selectionModel()->selectedRows();
+    int row = selectedRows.first().row();
+    QModelIndex index = ui->tableViewUsers->model()->index(row, 0);
+    QVariant data = ui->tableViewUsers->model()->data(index);
+    QString login = data.toString();
+    if (login == "Admin") {
+        QMessageBox::warning(this, "Внимание", "Вы не можете удалить главного администратора!");
+    }
+    else {
+        QMessageBox::StandardButton value;
+        value = QMessageBox::question(this, "Внимание", "Вы действительно хотите удалить " + login + "?", QMessageBox::Yes|QMessageBox::No);
+        if (value == QMessageBox::Yes) {
+            if (Database::delUser(login)) {
+                QMessageBox::information(this, "Информация", "Пользователь удален успешно!");
+            }
+        }
+    }
+    //TODO: HOW TO UPDATE???
+}

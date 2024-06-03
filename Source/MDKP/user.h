@@ -13,6 +13,7 @@ public:
     QString telephone;
     QString contact_face;
     QString attribute;
+    QString del_status;
 };
 
 #endif // USER_H

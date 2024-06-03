@@ -24,21 +24,21 @@ Authorization::~Authorization()
 void Authorization::on_pushButton_1_clicked() {
     QString login = ui->lineEditLogin->text();
     QString password = ui->lineEditPassword->text();
-    if (Database::searchAuthorization(login, password) && Database::checkAttribute(login) == "Admin") {
+    if (Database::searchAuthorization(login, password) && Database::checkAttribute(login) == "Admin" && Database::checkDelStatus(login)) {
         AdminWindow *admin_window = new AdminWindow();
         admin_window->setWindowTitle("Администратор -> Добавить пользователя");
         admin_window->show();
         close();
         deleteLater();
     }
-    else if (Database::searchAuthorization(login, password) && Database::checkAttribute(login) == "User") {
+    else if (Database::searchAuthorization(login, password) && Database::checkAttribute(login) == "User" && Database::checkDelStatus(login)) {
         UserOrderListWindow *user_window = new UserOrderListWindow();
         user_window->setWindowTitle("Пользователь -> Список товаров");
         user_window->show();
         close();
         deleteLater();
     }
-    else if (Database::searchAuthorization(login, password) && Database::checkAttribute(login) == "Worker") {
+    else if (Database::searchAuthorization(login, password) && Database::checkAttribute(login) == "Worker" && Database::checkDelStatus(login)) {
         WorkerAddDelivery *work_window = new WorkerAddDelivery();
         work_window->setWindowTitle("Бухгалтер -> Добавить продукт");
         work_window->show();
