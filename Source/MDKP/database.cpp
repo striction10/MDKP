@@ -17,7 +17,7 @@ void Database::createDatabase() {
                "telephone TEXT NOT NULL,"
                "contact_face TEXT NOT NULL,"
                "attribute TEXT NOT NULL,"
-               "del_status TEXT,"
+               "del_status TEXT NOT NULL,"
                "PRIMARY KEY(ID AUTOINCREMENT));")) {
         qDebug() << "Не удалось создать таблицу Users";
     }
@@ -29,6 +29,7 @@ void Database::createDatabase() {
                 "count_product INTEGER NOT NULL, "
                 "delivery_status TEXT NOT NULL,"
                 "speed_delivery TEXT,"
+                "del_status TEXT NOT NULL,"
                 "PRIMARY KEY(ID AUTOINCREMENT));")) {
             qDebug() << "Не удалось создать таблицу Products";
     }
@@ -36,8 +37,8 @@ void Database::createDatabase() {
 
 void Database::firstInsert() {
     QSqlQuery in_query;
-    if (!in_query.exec("INSERT INTO Users (login, password, name, address, telephone, contact_face, attribute)"
-                       "VALUES ('Admin', 'Admin', 'Организация', 'Киренского 26', '89325410945', 'Илья', 'Admin');")) {
+    if (!in_query.exec("INSERT INTO Users (login, password, name, address, telephone, contact_face, attribute, del_status)"
+                       "VALUES ('Admin', 'Admin', 'Организация', 'Киренского 26', '89325410945', 'Илья', 'Admin', 'visible');")) {
         qDebug() << "Не удалось выполнить вставку Admin";
     }
 }
@@ -108,7 +109,7 @@ bool Database::checkDelStatus(const QString &login) {
     while (query.next()) {
         QString db_login = query.value("login").toString();
         QString del_status = query.value("del_status").toString();
-        if (login == db_login && del_status == "NULL") {
+        if (login == db_login && del_status == "visible") {
             return true;
         }
     }
@@ -119,8 +120,9 @@ bool Database::addUsers(const QString &login, const QString &password, const QSt
                         const QString &address, const QString &telephone,
                         const QString &contact_face, const QString &attribute) {
     QSqlQuery in_query;
-    in_query.prepare("INSERT INTO Users (login, password, name, address, telephone, contact_face, attribute)"
-                  "VALUES (:login, :password, :name, :address, :telephone, :contact_face, :attribute)");
+    QString del_status = "visible";
+    in_query.prepare("INSERT INTO Users (login, password, name, address, telephone, contact_face, attribute, del_status)"
+                  "VALUES (:login, :password, :name, :address, :telephone, :contact_face, :attribute, :del_status)");
     in_query.bindValue(":login", login);
     in_query.bindValue(":password", password);
     in_query.bindValue(":name", name);
@@ -128,6 +130,7 @@ bool Database::addUsers(const QString &login, const QString &password, const QSt
     in_query.bindValue(":telephone", telephone);
     in_query.bindValue(":contact_face", contact_face);
     in_query.bindValue(":attribute", attribute);
+    in_query.bindValue(":del_status", del_status);
     if (!in_query.exec()) {
         qDebug() << "Не удалось добавить " + login;
         return false;
@@ -142,7 +145,7 @@ QVector<User> Database::showUsers() {
     QVector<User> users;
     User user;
     QSqlQuery query;
-    query.exec("SELECT * FROM Users WHERE del_status = 'NULL'");
+    query.exec("SELECT * FROM Users WHERE del_status = 'visible'");
     while (query.next()) {
         user.login = query.value(1).toString();
         user.password = query.value(2).toString();
@@ -187,14 +190,16 @@ bool Database::addProduct(const QString &name_product, const QString &info_produ
                           const QString &price, const int count_product, const QString delivery_status,
                           const QString &speed_delivery) {
     QSqlQuery in_query;
-    in_query.prepare("INSERT INTO Products (name_product, info_product, price, count_product, delivery_status, speed_delivery)"
-                     "VALUES (:name, :info, :price, :count, :status, :speed)");
+    QString del_status = "visible";
+    in_query.prepare("INSERT INTO Products (name_product, info_product, price, count_product, delivery_status, speed_delivery, del_status)"
+                     "VALUES (:name, :info, :price, :count, :status, :speed, :del_status)");
     in_query.bindValue(":name", name_product);
     in_query.bindValue(":info", info_product);
     in_query.bindValue(":price", price);
     in_query.bindValue(":count", count_product);
     in_query.bindValue(":status", delivery_status);
     in_query.bindValue(":speed", speed_delivery);
+    in_query.bindValue(":del_status", del_status);
     if (!in_query.exec()) {
         qDebug() << "Не удалось добавить " + name_product;
         return false;
@@ -205,11 +210,26 @@ bool Database::addProduct(const QString &name_product, const QString &info_produ
     return false;
 }
 
+bool Database::delProduct(const QString &name) {
+    QSqlQuery query;
+    query.exec("SELECT name_product FROM Products");
+    while (query.next()) {
+        QString db_name = query.value("name_product").toString();
+        if (name == db_name) {
+            query.prepare("UPDATE Products SET del_status = 'invisible' WHERE name_product = :name");
+            query.bindValue(":name", name);
+            query.exec();
+            return true;
+        }
+    }
+    return false;
+}
+
 QVector<Product> Database::showProduct() {
     QVector<Product> products;
     Product product;
     QSqlQuery query;
-    query.exec("SELECT * FROM Products");
+    query.exec("SELECT * FROM Products WHERE del_status = 'visible'");
     while (query.next()) {
         product.name_product = query.value(1).toString();
         product.info_product = query.value(2).toString();

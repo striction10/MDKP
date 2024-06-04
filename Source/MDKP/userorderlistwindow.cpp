@@ -11,6 +11,7 @@ UserOrderListWindow::UserOrderListWindow(QWidget *parent)
     products_model = new ProductModel();
     ui->tableViewProduct->setModel(products_model);
     ui->tableViewProduct->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableViewProduct->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
 }
 
 UserOrderListWindow::~UserOrderListWindow()

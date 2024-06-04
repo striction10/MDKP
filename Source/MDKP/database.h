@@ -25,6 +25,7 @@ public:
     static bool addProduct(const QString &name_product, const QString &info_product,
                            const QString &price, const int count_product, const QString delivery_status,
                            const QString &speed_delivery);
+    static bool delProduct(const QString &name);
     QVector<User> showUsers();
     QVector<Product> showProduct();
 private:

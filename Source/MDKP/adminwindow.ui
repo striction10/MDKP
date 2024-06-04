@@ -29,7 +29,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEditLogin"/>
+     <widget class="QLineEdit" name="lineEditLogin">
+      <property name="placeholderText">
+       <string>Введите логин пользователя</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_6">
@@ -39,7 +43,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEditPassword"/>
+     <widget class="QLineEdit" name="lineEditPassword">
+      <property name="placeholderText">
+       <string>Введите пароль пользователя</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label">
@@ -49,7 +57,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEditName"/>
+     <widget class="QLineEdit" name="lineEditName">
+      <property name="placeholderText">
+       <string>Введите наименование организации</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_2">
@@ -59,7 +71,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEditAddress"/>
+     <widget class="QLineEdit" name="lineEditAddress">
+      <property name="placeholderText">
+       <string>Введите адрес</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_3">
@@ -69,7 +85,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEditTelephone"/>
+     <widget class="QLineEdit" name="lineEditTelephone">
+      <property name="placeholderText">
+       <string>Введите номер телефона</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_4">
@@ -79,7 +99,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEditContactFace"/>
+     <widget class="QLineEdit" name="lineEditContactFace">
+      <property name="placeholderText">
+       <string>Введите контактное лицо</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_7">

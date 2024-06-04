@@ -44,6 +44,10 @@ void AdminWindowDelUser::on_pushButtonSort_clicked() {
 
 void AdminWindowDelUser::on_pushButtonDel_clicked() {
     QModelIndexList selectedRows = ui->tableViewUsers->selectionModel()->selectedRows();
+    if (selectedRows.isEmpty()) {
+        QMessageBox::warning(this, "Внимание", "Не выбран пользоватль для удаления!");
+        return;
+    }
     int row = selectedRows.first().row();
     QModelIndex index = ui->tableViewUsers->model()->index(row, 0);
     QVariant data = ui->tableViewUsers->model()->data(index);

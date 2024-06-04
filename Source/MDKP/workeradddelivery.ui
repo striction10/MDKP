@@ -31,7 +31,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEditName"/>
+       <widget class="QLineEdit" name="lineEditName">
+        <property name="placeholderText">
+         <string>Введите название товара</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="label_2">
@@ -41,7 +45,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEditInfo"/>
+       <widget class="QLineEdit" name="lineEditInfo">
+        <property name="placeholderText">
+         <string>Введите справочную информацию</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="label_5">
@@ -51,7 +59,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEditPrice"/>
+       <widget class="QLineEdit" name="lineEditPrice">
+        <property name="placeholderText">
+         <string>Введите цену</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="label_6">

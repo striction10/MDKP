@@ -25,6 +25,8 @@ private slots:
 
     void on_pushButtonSort_clicked();
 
+    void on_pushButtonDel_clicked();
+
 private:
     Ui::WorkerEditDelivery *ui;
     ProductModel *products_model;
