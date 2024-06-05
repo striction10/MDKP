@@ -8,7 +8,7 @@ class Product
 public:
     QString name_product;
     QString info_product;
-    QString price;
+    float price;
     int count_product;
     QString delivery_status;
     QString speed_delivery;

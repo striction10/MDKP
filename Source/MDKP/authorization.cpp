@@ -32,7 +32,9 @@ void Authorization::on_pushButton_1_clicked() {
         deleteLater();
     }
     else if (Database::searchAuthorization(login, password) && Database::checkAttribute(login) == "User" && Database::checkDelStatus(login)) {
+        id_user = Database::searchIdUser(login);
         UserOrderListWindow *user_window = new UserOrderListWindow();
+        user_window->setIdUser(id_user);
         user_window->setWindowTitle("Пользователь -> Список товаров");
         user_window->show();
         close();

@@ -5,8 +5,7 @@
 UsersModel::UsersModel(QObject *parent)
     : QAbstractTableModel{parent}
 {
-    Database db;
-    m_users = db.showUsers();
+
 }
 
 int UsersModel::rowCount(const QModelIndex &parent) const
@@ -89,4 +88,8 @@ void UsersModel::sortByLogin() {
 
     });
     emit layoutChanged();
+}
+
+void UsersModel::createUserModel() {
+    db.showUsers(this->m_users);
 }

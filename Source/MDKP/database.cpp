@@ -25,13 +25,28 @@ void Database::createDatabase() {
                 "ID INTEGER NOT NULL,"
                 "name_product TEXT NOT NULL,"
                 "info_product TEXT NOT NULL,"
-                "price TEXT NOT NULL, "
+                "price FLOAT NOT NULL, "
                 "count_product INTEGER NOT NULL, "
                 "delivery_status TEXT NOT NULL,"
                 "speed_delivery TEXT,"
                 "del_status TEXT NOT NULL,"
                 "PRIMARY KEY(ID AUTOINCREMENT));")) {
             qDebug() << "Не удалось создать таблицу Products";
+    }
+    if (!query.exec("CREATE TABLE IF NOT EXISTS Orders ("
+                "ID INTEGER NOT NULL,"
+                "active_delivery INTEGER NOT NULL,"
+                "id_user INTEGER NOT NULL,"
+                "id_product INTEGER NOT NULL,"
+                "price FLOAT NOT NULL,"
+                "date_success TEXT NOT NULL,"
+                "address TEXT,"
+                "quantity INTEGER NOT NULL,"
+                "type_delivery TEXT,"
+                "FOREIGN KEY(id_user) REFERENCES Users(ID),"
+                "FOREIGN KEY(id_product) REFERENCES Products(ID),"
+                "PRIMARY KEY(ID AUTOINCREMENT));")) {
+             qDebug() << "Не удалось создать таблицу Orders";
     }
 }
 
@@ -79,6 +94,18 @@ bool Database::searchAuthorization(const QString &login, const QString &password
     return false;
 }
 
+int Database::searchIdUser(const QString &login) {
+    QSqlQuery query;
+    query.exec("SELECT * FROM Users");
+    while (query.next()) {
+        QString db_login = query.value("login").toString();
+        if (db_login == login) {
+            return query.value("ID").toInt();
+        }
+    }
+    return 0;
+}
+
 QString Database::checkAttribute(const QString &login) {
     QSqlQuery query;
     query.exec("SELECT * FROM Users");
@@ -88,7 +115,7 @@ QString Database::checkAttribute(const QString &login) {
             return query.value("attribute").toString();
         }
     }
-    return 0;
+    return "";
 }
 
 bool Database::checkLogin(const QString &login) {
@@ -141,8 +168,8 @@ bool Database::addUsers(const QString &login, const QString &password, const QSt
     return false;
 }
 
-QVector<User> Database::showUsers() {
-    QVector<User> users;
+void Database::showUsers(QVector<User> &users) {
+    users.clear();
     User user;
     QSqlQuery query;
     query.exec("SELECT * FROM Users WHERE del_status = 'visible'");
@@ -156,7 +183,6 @@ QVector<User> Database::showUsers() {
         user.attribute = query.value(7).toString();
         users.append(user);
     }
-    return users;
 }
 
 bool Database::delUser(const QString &login) {
@@ -187,7 +213,7 @@ bool Database::checkProduct(const QString &product_name) {
 }
 
 bool Database::addProduct(const QString &name_product, const QString &info_product,
-                          const QString &price, const int count_product, const QString delivery_status,
+                          const float price, const int count_product, const QString delivery_status,
                           const QString &speed_delivery) {
     QSqlQuery in_query;
     QString del_status = "visible";
@@ -210,6 +236,57 @@ bool Database::addProduct(const QString &name_product, const QString &info_produ
     return false;
 }
 
+int Database::searchIdProduct(const QString &name) {
+    QSqlQuery query;
+    query.exec("SELECT * FROM Products");
+    while (query.next()) {
+        QString db_name_product = query.value("name_product").toString();
+        if (name == db_name_product) {
+            return query.value("ID").toInt();
+        }
+    }
+    return 0;
+}
+
+int Database::countProduct(const QString &name) {
+    QSqlQuery query;
+    query.exec("SELECT * FROM Products");
+    while (query.next()) {
+        QString db_name = query.value("name_product").toString();
+        if (name == db_name) {
+            int count = query.value("count_product").toInt();
+            return count;
+        }
+    }
+    return 0;
+}
+
+QString Database::infoDelivery(const QString &name) {
+    QSqlQuery query;
+    query.exec("SELECT * FROM Products");
+    while (query.next()) {
+        QString db_name = query.value("name_product").toString();
+        if (name == db_name) {
+            QString speed_delivery = query.value("speed_delivery").toString();
+            return speed_delivery;
+        }
+    }
+    return "";
+}
+
+float Database::priceProduct(const QString &name) {
+    QSqlQuery query;
+    query.exec("SELECT * FROM Products");
+    while (query.next()) {
+        QString db_name = query.value("name_product").toString();
+        if (name == db_name) {
+            float price = query.value("price").toFloat();
+            return price;
+        }
+    }
+    return 0;
+}
+
 bool Database::delProduct(const QString &name) {
     QSqlQuery query;
     query.exec("SELECT name_product FROM Products");
@@ -225,19 +302,74 @@ bool Database::delProduct(const QString &name) {
     return false;
 }
 
-QVector<Product> Database::showProduct() {
-    QVector<Product> products;
+void Database::showProduct(QVector<Product> &products) {
+    products.clear();
     Product product;
     QSqlQuery query;
     query.exec("SELECT * FROM Products WHERE del_status = 'visible'");
     while (query.next()) {
         product.name_product = query.value(1).toString();
         product.info_product = query.value(2).toString();
-        product.price = query.value(3).toString();
+        product.price = query.value(3).toFloat();
         product.count_product = query.value(4).toInt();
         product.delivery_status = query.value(5).toString();
         product.speed_delivery = query.value(6).toString();
         products.append(product);
     }
-    return products;
+}
+
+void Database::updOrderProduct(const QString &name, const int count) {
+    QSqlQuery query;
+    query.exec("SELECT name_product FROM Products");
+    while (query.next()) {
+        QString db_name = query.value("name_product").toString();
+        if (name == db_name) {
+            query.prepare("UPDATE Products SET count_product = :count WHERE name_product = :name");
+            query.bindValue(":name", name);
+            query.bindValue(":count", count);
+            query.exec();
+        }
+    }
+}
+
+bool Database::addOrder(const int id_user, const QString &name_product, int count, const QString &type_delivery,
+                        const QString &date_success, const QString &address, float price) {
+    QSqlQuery in_query;
+    const int active_delivery = 1;
+    in_query.prepare("INSERT INTO Orders (active_delivery, id_user, id_product, price, date_success, address, quantity, type_delivery)"
+                     "VALUES (:active_delivery, :id_user, :id_product, :price, :date_success, :address, :quantity, :type_delivery)");
+    in_query.bindValue(":active_delivery", active_delivery);
+    in_query.bindValue(":id_user", id_user);
+    in_query.bindValue(":id_product", searchIdProduct(name_product));
+    in_query.bindValue(":price", price);
+    in_query.bindValue(":date_success", date_success);
+    in_query.bindValue(":address", address);
+    in_query.bindValue(":quantity", count);
+    in_query.bindValue(":type_delivery", type_delivery);
+    if (!in_query.exec()) {
+        qDebug() << "Не удалось добавить заказ";
+        return false;
+    }
+    else {
+        return true;
+    }
+    return false;
+}
+
+void Database::showDeliveryUser(QVector<DeliveryUser> &delivery_user) {
+    delivery_user.clear();
+    DeliveryUser delivery;
+    QSqlQuery query;
+    query.exec("SELECT * FROM Orders JOIN Products ON Products.ID = Orders.id_product");
+    while (query.next()) {
+        delivery.active_delivery = query.value(1).toInt();
+        delivery.name_product = query.value(10).toString();
+        delivery.info_product = query.value(11).toString();
+        delivery.quantity = query.value(7).toInt();
+        delivery.price = query.value(4).toFloat();
+        delivery.address = query.value(6).toString();
+        delivery.date_success = query.value(5).toString();
+        delivery.type_delivery = query.value(8).toString();
+        delivery_user.append(delivery);
+    }
 }

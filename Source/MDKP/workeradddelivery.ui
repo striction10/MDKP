@@ -74,6 +74,9 @@
       </item>
       <item>
        <widget class="QSpinBox" name="spinBoxCount">
+        <property name="minimum">
+         <number>1</number>
+        </property>
         <property name="maximum">
          <number>1000</number>
         </property>
@@ -111,12 +114,17 @@
        <widget class="QComboBox" name="comboBox">
         <item>
          <property name="text">
+          <string>Медленная</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Быстрая</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Медленная</string>
+          <string>Быстрая и медленная</string>
          </property>
         </item>
        </widget>

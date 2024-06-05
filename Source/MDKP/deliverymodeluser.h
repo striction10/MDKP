@@ -1,27 +1,27 @@
-#ifndef USERSMODEL_H
-#define USERSMODEL_H
+#ifndef DELIVERYMODELUSER_H
+#define DELIVERYMODELUSER_H
 
 #include <QAbstractTableModel>
 #include <QVector>
 
-#include "user.h"
+#include "deliveryuser.h"
 #include "database.h"
 
-class UsersModel : public QAbstractTableModel
+class DeliveryModelUser : public QAbstractTableModel
 {
 public:
-    explicit UsersModel(QObject *parent = nullptr);
+    explicit DeliveryModelUser(QObject *parent = nullptr);
     int rowCount(const QModelIndex &parent) const;
     int columnCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-    void createUserModel();
-    void sortByLogin();
+    void sortByName();
+    void createDeliveryUserModel();
 
 private:
-    QVector<User> m_users;
+    QVector<DeliveryUser> m_delivery_user;
     Database db;
     int direction = 0;
 };
 
-#endif // USERSMODEL_H
+#endif // DELIVERYMODELUSER_H

@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class Authorization; }
 QT_END_NAMESPACE
@@ -21,5 +20,6 @@ private slots:
 
 private:
     Ui::Authorization *ui;
+    int id_user;
 };
 #endif // AUTHORIZATION_H

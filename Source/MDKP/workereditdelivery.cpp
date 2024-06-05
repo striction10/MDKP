@@ -12,7 +12,9 @@ WorkerEditDelivery::WorkerEditDelivery(QWidget *parent)
     , ui(new Ui::WorkerEditDelivery)
 {
     ui->setupUi(this);
+
     products_model = new ProductModel();
+    products_model->createProductModel();
     ui->tableViewProduct->setModel(products_model);
     ui->tableViewProduct->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableViewProduct->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
@@ -74,5 +76,8 @@ void WorkerEditDelivery::on_pushButtonDel_clicked() {
             QMessageBox::information(this, "Информация", "Продукт удален успешно!");
         }
     }
+    products_model->createProductModel();
+    products_model->layoutChanged();
+    ui->tableViewProduct->setModel(products_model);
 }
 

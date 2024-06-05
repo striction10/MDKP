@@ -20,7 +20,7 @@ WorkerAddDelivery::WorkerAddDelivery(QWidget *parent)
             QRegularExpression(R"([а-яА-Яa-zA-Z_ ]{50})")));
     ui->lineEditPrice->setValidator(
         new QRegularExpressionValidator(
-            QRegularExpression(R"([0-9,]{7})")));
+            QRegularExpression(R"([0-9.]{7})")));
 }
 
 WorkerAddDelivery::~WorkerAddDelivery()
@@ -58,7 +58,7 @@ void WorkerAddDelivery::on_action_4_triggered() {
 void WorkerAddDelivery::on_pushButtonAdd_clicked() {
     QString name_product = ui->lineEditName->text();
     QString info_product = ui->lineEditInfo->text();
-    QString price = ui->lineEditPrice->text();
+    QString price_test = ui->lineEditPrice->text();
     int count_product = ui->spinBoxCount->value();
     QString delivery_status;
     QString speed_delivery = NULL;
@@ -81,12 +81,8 @@ void WorkerAddDelivery::on_pushButtonAdd_clicked() {
         QMessageBox::warning(this, "Внимание", "Поле для информации продукта пустое");
         return;
     }
-    if (price.isEmpty()) {
+    if (price_test.isEmpty()) {
         QMessageBox::warning(this, "Внимание", "Поле для цены продукта пустое");
-        return;
-    }
-    if (count_product == 0) {
-        QMessageBox::warning(this, "Внимание", "Количество продукта не может быть равно 0");
         return;
     }
     if (!ui->radioButton->isChecked() && !ui->radioButton_2->isChecked()) {
@@ -94,6 +90,7 @@ void WorkerAddDelivery::on_pushButtonAdd_clicked() {
         return;
     }
     else {
+        float price = price_test.toFloat();
         Database::addProduct(name_product, info_product, price, count_product, delivery_status, speed_delivery);
         QMessageBox::information(this, "Информация", "Продукт успешно добавлен!");
         return;

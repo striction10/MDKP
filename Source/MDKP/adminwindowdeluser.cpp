@@ -14,6 +14,7 @@ AdminWindowDelUser::AdminWindowDelUser(QWidget *parent) :
     ui->setupUi(this);
 
     users_model = new UsersModel();
+    users_model->createUserModel();
     ui->tableViewUsers->setModel(users_model);
     ui->tableViewUsers->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableViewUsers->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
@@ -64,5 +65,7 @@ void AdminWindowDelUser::on_pushButtonDel_clicked() {
             }
         }
     }
-    //TODO: HOW TO UPDATE???
+    users_model->createUserModel();
+    users_model->layoutChanged();
+    ui->tableViewUsers->setModel(users_model);
 }

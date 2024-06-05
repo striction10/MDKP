@@ -12,8 +12,11 @@ SOURCES += \
     adminwindow.cpp \
     adminwindowdeluser.cpp \
     database.cpp \
+    deliverymodeluser.cpp \
+    deliveryuser.cpp \
     main.cpp \
     authorization.cpp \
+    makeorder.cpp \
     product.cpp \
     productmodel.cpp \
     user.cpp \
@@ -29,6 +32,9 @@ HEADERS += \
     adminwindowdeluser.h \
     authorization.h \
     database.h \
+    deliverymodeluser.h \
+    deliveryuser.h \
+    makeorder.h \
     product.h \
     productmodel.h \
     user.h \
@@ -43,6 +49,7 @@ FORMS += \
     adminwindow.ui \
     adminwindowdeluser.ui \
     authorization.ui \
+    makeorder.ui \
     useractivedeliverywindow.ui \
     userorderlistwindow.ui \
     workeractivedelivery.ui \

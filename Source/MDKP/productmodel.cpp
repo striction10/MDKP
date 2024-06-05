@@ -1,17 +1,15 @@
 #include "productmodel.h"
-#include "database.h"
 #include <algorithm>
 
 ProductModel::ProductModel(QObject *parent)
     : QAbstractTableModel{parent}
 {
-    Database db;
-    m_product = db.showProduct();
+
 }
 
 int ProductModel::rowCount(const QModelIndex &parent) const
 {
-    return m_product.size();
+    return m_products.size();
 }
 
 int ProductModel::columnCount(const QModelIndex &parent) const
@@ -23,22 +21,22 @@ QVariant ProductModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole) {
         if (index.column() == 0) {
-            return m_product[index.row()].name_product;
+            return m_products[index.row()].name_product;
         }
         if (index.column() == 1) {
-            return m_product[index.row()].info_product;
+            return m_products[index.row()].info_product;
         }
         if (index.column() == 2) {
-            return m_product[index.row()].price;
+            return m_products[index.row()].price;
         }
         if (index.column() == 3) {
-            return m_product[index.row()].count_product;
+            return m_products[index.row()].count_product;
         }
         if (index.column() == 4) {
-            return m_product[index.row()].delivery_status;
+            return m_products[index.row()].delivery_status;
         }
         if (index.column() == 5) {
-            return m_product[index.row()].speed_delivery;
+            return m_products[index.row()].speed_delivery;
         }
     }
     return {};
@@ -75,7 +73,7 @@ QVariant ProductModel::headerData(int section, Qt::Orientation orientation, int 
 
 void ProductModel::sortByName() {
     direction++;
-    std::sort(m_product.begin(), m_product.end(), [this](const Product& lhs, const Product& rhs) {
+    std::sort(m_products.begin(), m_products.end(), [this](const Product& lhs, const Product& rhs) {
         if (direction % 2) {
             return lhs.name_product < rhs.name_product;
         }
@@ -83,4 +81,8 @@ void ProductModel::sortByName() {
 
     });
     emit layoutChanged();
+}
+
+void ProductModel::createProductModel() {
+    db.showProduct(this->m_products);
 }
