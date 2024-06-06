@@ -95,9 +95,10 @@ void AdminWindow::on_pushButton_1_clicked() {
         return;
     }
     else {
-        Database::addUsers(login, password, name, address, telephone, contact_face, attribute);
-        QMessageBox::information(this, "Информация", "Пользователь успешно добавлен!");
-        return;
+        if (Database::addUsers(login, password, name, address, telephone, contact_face, attribute)) {
+            QMessageBox::information(this, "Информация", "Пользователь успешно добавлен!");
+            return;
+        }
     }
 }
 

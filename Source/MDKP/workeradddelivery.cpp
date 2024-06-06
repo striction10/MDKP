@@ -91,9 +91,10 @@ void WorkerAddDelivery::on_pushButtonAdd_clicked() {
     }
     else {
         float price = price_test.toFloat();
-        Database::addProduct(name_product, info_product, price, count_product, delivery_status, speed_delivery);
-        QMessageBox::information(this, "Информация", "Продукт успешно добавлен!");
-        return;
+        if (Database::addProduct(name_product, info_product, price, count_product, delivery_status, speed_delivery)) {
+            QMessageBox::information(this, "Информация", "Продукт успешно добавлен!");
+            return;
+        }
     }
 }
 

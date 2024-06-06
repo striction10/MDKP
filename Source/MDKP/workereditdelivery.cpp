@@ -88,3 +88,19 @@ void WorkerEditDelivery::on_pushButtonDel_clicked() {
     }
 }
 
+
+void WorkerEditDelivery::on_pushButtonEdit_clicked() {
+    QModelIndexList selectedRows = ui->tableViewProduct->selectionModel()->selectedRows();
+    if (selectedRows.isEmpty()) {
+        QMessageBox::warning(this, "Внимание", "Не выбран продукт для редактирования!");
+        return;
+    }
+    int row = selectedRows.first().row();
+    QModelIndex index = ui->tableViewProduct->model()->index(row, 0);
+    QVariant data = ui->tableViewProduct->model()->data(index);
+    QString name = data.toString();
+    edit_product = new WorkerEditProduct(this);
+    edit_product->editInfo(name);
+    edit_product->show();
+}
+

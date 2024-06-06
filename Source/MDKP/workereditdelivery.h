@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "productmodel.h"
+#include "workereditproduct.h"
 
 namespace Ui {
 class WorkerEditDelivery;
@@ -27,9 +28,12 @@ private slots:
 
     void on_pushButtonDel_clicked();
 
+    void on_pushButtonEdit_clicked();
+
 private:
     Ui::WorkerEditDelivery *ui;
     ProductModel *products_model;
+    WorkerEditProduct *edit_product;
 };
 
 #endif // WORKEREDITDELIVERY_H

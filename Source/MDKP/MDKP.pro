@@ -27,7 +27,8 @@ SOURCES += \
     usersmodel.cpp \
     workeractivedelivery.cpp \
     workeradddelivery.cpp \
-    workereditdelivery.cpp
+    workereditdelivery.cpp \
+    workereditproduct.cpp
 
 HEADERS += \
     adminwindow.h \
@@ -47,7 +48,8 @@ HEADERS += \
     usersmodel.h \
     workeractivedelivery.h \
     workeradddelivery.h \
-    workereditdelivery.h
+    workereditdelivery.h \
+    workereditproduct.h
 
 FORMS += \
     adminwindow.ui \
@@ -58,7 +60,8 @@ FORMS += \
     userorderlistwindow.ui \
     workeractivedelivery.ui \
     workeradddelivery.ui \
-    workereditdelivery.ui
+    workereditdelivery.ui \
+    workereditproduct.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

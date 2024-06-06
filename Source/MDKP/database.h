@@ -32,6 +32,8 @@ public:
     static int searchIdProduct(const QString &name);
     static int countProduct(const QString &name);
     static float priceProduct(const QString &name);
+    static void updProduct(const QString &name, const QString &info_product, const float price,
+                           const int count_product, const QString &delivery_status, const QString &speed_delivery);
     static QString infoDelivery(const QString &name);
     static bool delProduct(const QString &name);
     static bool checkProductInOrder(const int id_product);

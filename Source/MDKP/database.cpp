@@ -342,6 +342,26 @@ void Database::showProduct(QVector<Product> &products) {
     }
 }
 
+void Database::updProduct(const QString &name, const QString &info_product, const float price,
+                          const int count_product, const QString &delivery_status, const QString &speed_delivery) {
+    QSqlQuery query;
+    query.exec("SELECT name_product FROM Products");
+    while (query.next()) {
+        QString db_name = query.value("name_product").toString();
+        if (name == db_name) {
+            query.prepare("UPDATE Products SET info_product = :info, price = :price, count_product = :count, "
+                          "delivery_status = :status, speed_delivery = :speed WHERE name_product = :name");
+            query.bindValue(":name", name);
+            query.bindValue(":info", info_product);
+            query.bindValue(":price", price);
+            query.bindValue(":count", count_product);
+            query.bindValue(":status", delivery_status);
+            query.bindValue(":speed", speed_delivery);
+            query.exec();
+        }
+    }
+}
+
 void Database::updOrderProduct(const QString &name, const int count) {
     QSqlQuery query;
     query.exec("SELECT name_product FROM Products");
