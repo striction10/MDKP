@@ -72,8 +72,15 @@ void WorkerEditDelivery::on_pushButtonDel_clicked() {
     QMessageBox::StandardButton value;
     value = QMessageBox::question(this, "Внимание", "Вы действительно хотите удалить " + name + "?", QMessageBox::Yes|QMessageBox::No);
     if (value == QMessageBox::Yes) {
-        if (Database::delProduct(name)) {
-            QMessageBox::information(this, "Информация", "Продукт удален успешно!");
+        if (Database::checkProductInOrder(Database::searchIdProduct(name))) {
+            if (Database::delProduct(name)) {
+                QMessageBox::information(this, "Информация", "Продукт удален успешно!");
+                return;
+            }
+        }
+        else {
+            QMessageBox::information(this, "Информация", "Невозможно удалить продукт, так как он находится в активной доставке!");
+            return;
         }
     }
     products_model->createProductModel();

@@ -95,6 +95,6 @@ void DeliveryModelUser::sortByName() {
     emit layoutChanged();
 }
 
-void DeliveryModelUser::createDeliveryUserModel() {
-    db.showDeliveryUser(this->m_delivery_user);
+void DeliveryModelUser::createDeliveryUserModel(const int id_user) {
+    db.showDeliveryUser(this->m_delivery_user, id_user);
 }

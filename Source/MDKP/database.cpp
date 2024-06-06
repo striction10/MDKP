@@ -212,6 +212,18 @@ bool Database::checkProduct(const QString &product_name) {
     return false;
 }
 
+bool Database::checkProductInOrder(const int id_product) {
+    QSqlQuery query;
+    query.exec("SELECT id_product FROM Orders");
+    while (query.next()) {
+        int id_product_db = query.value(0).toInt();
+        if (id_product == id_product_db) {
+            return false;
+        }
+    }
+    return true;
+}
+
 bool Database::addProduct(const QString &name_product, const QString &info_product,
                           const float price, const int count_product, const QString delivery_status,
                           const QString &speed_delivery) {
@@ -356,11 +368,13 @@ bool Database::addOrder(const int id_user, const QString &name_product, int coun
     return false;
 }
 
-void Database::showDeliveryUser(QVector<DeliveryUser> &delivery_user) {
+void Database::showDeliveryUser(QVector<DeliveryUser> &delivery_user, const int id_user) {
     delivery_user.clear();
     DeliveryUser delivery;
     QSqlQuery query;
-    query.exec("SELECT * FROM Orders JOIN Products ON Products.ID = Orders.id_product");
+    query.prepare("SELECT * FROM Orders JOIN Products ON Products.ID = Orders.id_product WHERE id_user = :id");
+    query.bindValue(":id", id_user);
+    query.exec();
     while (query.next()) {
         delivery.active_delivery = query.value(1).toInt();
         delivery.name_product = query.value(10).toString();

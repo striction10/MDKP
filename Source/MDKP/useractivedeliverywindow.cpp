@@ -8,12 +8,6 @@ UserActiveDeliveryWindow::UserActiveDeliveryWindow(QWidget *parent)
     , ui(new Ui::UserActiveDeliveryWindow)
 {
     ui->setupUi(this);
-
-    model_delivery_user = new DeliveryModelUser();
-    model_delivery_user->createDeliveryUserModel();
-    ui->tableViewDelivery->setModel(model_delivery_user);
-    ui->tableViewDelivery->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableViewDelivery->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
 }
 
 UserActiveDeliveryWindow::~UserActiveDeliveryWindow()
@@ -42,12 +36,20 @@ void UserActiveDeliveryWindow::on_action_1_triggered() {
 void UserActiveDeliveryWindow::on_action_2_triggered() {
     this->close();
     this->deleteLater();
-    UserOrderListWindow *logic_window = new UserOrderListWindow();
-    logic_window->setWindowTitle("Пользователь -> Список товаров");
-    logic_window->show();
+    UserOrderListWindow *user_window = new UserOrderListWindow();
+    user_window->setWindowTitle("Пользователь -> Список товаров");
+    user_window->setIdUser(getIdUser());
+    user_window->show();
 }
 
 void UserActiveDeliveryWindow::on_pushButtonSort_clicked() {
     model_delivery_user->sortByName();
 }
 
+void UserActiveDeliveryWindow::showContent() {
+    model_delivery_user = new DeliveryModelUser();
+    model_delivery_user->createDeliveryUserModel(getIdUser());
+    ui->tableViewDelivery->setModel(model_delivery_user);
+    ui->tableViewDelivery->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableViewDelivery->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
+}

@@ -32,12 +32,13 @@ public:
     static float priceProduct(const QString &name);
     static QString infoDelivery(const QString &name);
     static bool delProduct(const QString &name);
+    static bool checkProductInOrder(const int id_product);
     static void updOrderProduct(const QString &name, const int count);
     static bool addOrder(const int id_user, const QString &name, int count, const QString &type_delivery,
                         const QString &date_success, const QString &address, float price);
     static void showUsers(QVector<User> &users);
     static void showProduct(QVector<Product> &products);
-    static void showDeliveryUser(QVector<DeliveryUser> &delivery_user);
+    static void showDeliveryUser(QVector<DeliveryUser> &delivery_user, const int id_user);
 private:
     static void createDatabase();
     static void firstInsert();

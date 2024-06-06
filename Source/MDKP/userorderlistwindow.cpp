@@ -47,6 +47,7 @@ void UserOrderListWindow::on_action_3_triggered() {
 
     UserActiveDeliveryWindow *active_delivery_window = new UserActiveDeliveryWindow();
     active_delivery_window->setIdUser(getIdUser());
+    active_delivery_window->showContent();
     active_delivery_window->setWindowTitle("Пользователь -> Мои доставки");
     active_delivery_window->show();
 }

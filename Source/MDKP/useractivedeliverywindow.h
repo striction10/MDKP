@@ -16,6 +16,7 @@ public:
     explicit UserActiveDeliveryWindow(QWidget *parent = nullptr);
     ~UserActiveDeliveryWindow();
     void setIdUser(int id_user);
+    void showContent();
 
 private slots:
     void on_action_1_triggered();

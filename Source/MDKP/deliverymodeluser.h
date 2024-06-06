@@ -16,7 +16,7 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     void sortByName();
-    void createDeliveryUserModel();
+    void createDeliveryUserModel(const int id_user);
 
 private:
     QVector<DeliveryUser> m_delivery_user;
