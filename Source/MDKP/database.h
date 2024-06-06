@@ -7,6 +7,7 @@
 #include <user.h>
 #include <product.h>
 #include <deliveryuser.h>
+#include <deliveryalluser.h>
 
 class Database : public QObject
 {
@@ -16,6 +17,7 @@ public:
     static void connectToDatabase();
     static bool searchAuthorization(const QString &login, const QString &password);
     static int searchIdUser(const QString &login);
+    static bool searchIdUserInOrders(const int id_user);
     static QString checkAttribute(const QString &login);
     static bool checkLogin(const QString &login);
     static bool checkDelStatus(const QString &login);
@@ -39,6 +41,7 @@ public:
     static void showUsers(QVector<User> &users);
     static void showProduct(QVector<Product> &products);
     static void showDeliveryUser(QVector<DeliveryUser> &delivery_user, const int id_user);
+    static void showDeliveryAllUser(QVector<DeliveryAllUser> &delivery_all_user);
 private:
     static void createDatabase();
     static void firstInsert();

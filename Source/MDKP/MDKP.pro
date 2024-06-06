@@ -12,6 +12,8 @@ SOURCES += \
     adminwindow.cpp \
     adminwindowdeluser.cpp \
     database.cpp \
+    deliveryalluser.cpp \
+    deliveryallusersmodel.cpp \
     deliverymodeluser.cpp \
     deliveryuser.cpp \
     main.cpp \
@@ -32,6 +34,8 @@ HEADERS += \
     adminwindowdeluser.h \
     authorization.h \
     database.h \
+    deliveryalluser.h \
+    deliveryallusersmodel.h \
     deliverymodeluser.h \
     deliveryuser.h \
     makeorder.h \

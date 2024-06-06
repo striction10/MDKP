@@ -60,12 +60,19 @@ void AdminWindowDelUser::on_pushButtonDel_clicked() {
         QMessageBox::StandardButton value;
         value = QMessageBox::question(this, "Внимание", "Вы действительно хотите удалить " + login + "?", QMessageBox::Yes|QMessageBox::No);
         if (value == QMessageBox::Yes) {
-            if (Database::delUser(login)) {
-                QMessageBox::information(this, "Информация", "Пользователь удален успешно!");
+            if (Database::searchIdUserInOrders(Database::searchIdUser(login))) {
+                if (Database::delUser(login)) {
+                    QMessageBox::information(this, "Информация", "Пользователь удален успешно!");
+                    users_model->createUserModel();
+                    users_model->layoutChanged();
+                    ui->tableViewUsers->setModel(users_model);
+                    return;
+                }
+            }
+            else {
+                QMessageBox::information(this, "Информация", "Пользователя невозможно удалить, так как у него есть активная доставка!");
+                return;
             }
         }
     }
-    users_model->createUserModel();
-    users_model->layoutChanged();
-    ui->tableViewUsers->setModel(users_model);
 }

@@ -106,6 +106,18 @@ int Database::searchIdUser(const QString &login) {
     return 0;
 }
 
+bool Database::searchIdUserInOrders(const int id_user) {
+    QSqlQuery query;
+    query.exec("SELECT id_user FROM Orders");
+    while (query.next()) {
+        int db_id_user = query.value(0).toInt();
+        if (db_id_user == id_user) {
+            return false;
+        }
+    }
+    return true;
+}
+
 QString Database::checkAttribute(const QString &login) {
     QSqlQuery query;
     query.exec("SELECT * FROM Users");
@@ -385,5 +397,20 @@ void Database::showDeliveryUser(QVector<DeliveryUser> &delivery_user, const int 
         delivery.date_success = query.value(5).toString();
         delivery.type_delivery = query.value(8).toString();
         delivery_user.append(delivery);
+    }
+}
+
+void Database::showDeliveryAllUser(QVector<DeliveryAllUser> &delivery_all_user) {
+    delivery_all_user.clear();
+    DeliveryAllUser delivery;
+    QSqlQuery query;
+    query.exec("SELECT * FROM Orders JOIN Products ON Products.ID = Orders.id_product JOIN Users ON Users.ID = Orders.id_user");
+    while (query.next()) {
+        delivery.login = query.value(18).toString();
+        delivery.active_delivery = query.value(1).toInt();
+        delivery.product_name = query.value(10).toString();
+        delivery.address = query.value(6).toString();
+        delivery.type_delivery = query.value(8).toString();
+        delivery_all_user.append(delivery);
     }
 }

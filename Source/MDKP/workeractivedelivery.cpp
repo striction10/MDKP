@@ -9,6 +9,11 @@ WorkerActiveDelivery::WorkerActiveDelivery(QWidget *parent)
     , ui(new Ui::WorkerActiveDelivery)
 {
     ui->setupUi(this);
+    delivery_all_users_model = new DeliveryAllUserModel();
+    delivery_all_users_model->createDeliveryAllUsersModel();
+    ui->tableViewDelivery->setModel(delivery_all_users_model);
+    ui->tableViewDelivery->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableViewDelivery->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
 }
 
 WorkerActiveDelivery::~WorkerActiveDelivery()
@@ -42,3 +47,10 @@ void WorkerActiveDelivery::on_action_3_triggered() {
     worker_edit_window->setWindowTitle("Бухгалтер -> Редактировать продукт");
     worker_edit_window->show();
 }
+
+
+
+void WorkerActiveDelivery::on_pushButton_clicked() {
+    delivery_all_users_model->sortByLogin();
+}
+

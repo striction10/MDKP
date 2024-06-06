@@ -75,6 +75,9 @@ void WorkerEditDelivery::on_pushButtonDel_clicked() {
         if (Database::checkProductInOrder(Database::searchIdProduct(name))) {
             if (Database::delProduct(name)) {
                 QMessageBox::information(this, "Информация", "Продукт удален успешно!");
+                products_model->createProductModel();
+                products_model->layoutChanged();
+                ui->tableViewProduct->setModel(products_model);
                 return;
             }
         }
@@ -83,8 +86,5 @@ void WorkerEditDelivery::on_pushButtonDel_clicked() {
             return;
         }
     }
-    products_model->createProductModel();
-    products_model->layoutChanged();
-    ui->tableViewProduct->setModel(products_model);
 }
 
