@@ -1,0 +1,9 @@
+@startuml
+skinparam actorStyle Hollow
+left to right direction
+"Бухгалтер" as Worker
+Worker --> (Авторизироваться)
+Worker --> (Добавить продукт)
+Worker --> (Редактировать продукт)
+Worker --> (Посмотреть доставки)
+Worker --> (Выйти из системы)

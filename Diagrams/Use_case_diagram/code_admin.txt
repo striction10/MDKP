@@ -1,0 +1,8 @@
+@startuml
+skinparam actorStyle Hollow
+left to right direction
+"Админ" as Admin
+Admin --> (Авторизироваться)
+Admin --> (Регистрация пользователя)
+Admin --> (Удалить пользователя)
+Admin --> (Выйти из системы)

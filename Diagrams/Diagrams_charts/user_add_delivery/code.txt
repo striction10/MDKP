@@ -1,5 +1,5 @@
 @startuml
-actor "Заказчик" as User
+actor "Пользователь" as User
 
 boundary "Основное окно(Список товаров)" as MainWindow
 

@@ -6,17 +6,17 @@ entity Users {
   password : string
   name : string
   address : string
-  telephone : int
+  telephone : string
   attribute : string
 }
 entity Products {
   * id : int
   --
-  name : int
+  name : string
   information : string
   price : float
   quantity : int
-  delivery_availability : bool
+  delivery_availability : string
   type_delivery : string
 }
 entity Orders {
@@ -26,7 +26,7 @@ entity Orders {
   id_user : int
   id_products : int
   price : float
-  date_success : date
+  date_success : string
   address : string
   quantity : int
   type_delivery : string

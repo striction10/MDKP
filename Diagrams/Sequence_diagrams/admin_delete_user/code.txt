@@ -16,7 +16,7 @@ alt user found
 mainMenu -> database_user : mark for deletion
 database_user --> mainMenu : status
 mainMenu --> Admin : successful
-else 
+else user not found
 mainMenu -> message : show
 message --> mainMenu
 mainMenu --> Admin

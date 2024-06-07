@@ -8,24 +8,52 @@ on_addUser_ButtonPressed()
 on_deleteUser_ButtonPressed()
 on_checkout_ButtonPressed()
 on_addProduct_ButtonPressed()
+on_deleteProduct_ButtonPressed()
+on_editProduct_ButtonPressed()
+on_addOrder_ButtonPressed()
 checkUserExists()
 checkProductExists()
+sort_delivery()
+sort_user()
+sort_product()
 on_dataInput()
 }
 
 class DbUser {
 create() : bool
-mark_for_deletion() : bool
+mark_for_deletion(login) : bool
+search_authorization(login, password) : bool
+search_id_user(login) : int
+search_id_user_in_orders(id_user) : bool
+check_attribute(login) : string
+check_login(login) : bool
+check_del_status(login) : bool
+add_user() : bool
+del_user() : bool
+load_database() : users
 }
 
 class DbProduct {
 create() : bool
+check_product(name_product) : bool
+add_product() : bool
+search_id_product(name_product) : int
+count_product(name_product) : int
+price_product(name_product) : float
+del_product(name_product) : bool
+check_product_in_orders(id_product) : bool
+load_database() : products
 }
 
 class User {
+login : string
+password : string
 name : string
 address : string
 telephone : string
+contact_face : string
+attribute : string
+del_status : string
 }
 
 class Message {
@@ -33,19 +61,62 @@ show()
 }
 
 class DbOrder {
+create() : bool
+add_order() : bool 
 load_database() : orders
 }
 
 class Product {
-quantity : int
+name_product : string
 description : string
-delivery_availability : bool
+price : float
+quantity : int
+delivery_availability : string'
+speed_delivert : string
 }
+
+class Order {
+active_delivery : int
+id_user : int
+id_product : int
+price : float
+date_success : string
+address : string
+quantity : int
+speed_delivert : string
+}
+
+class WindowАuthorization {
+show()
+}
+
+class WindowAdmin {
+show()
+}
+
+class WindowUser {
+show()
+set_id_user()
+get_id_user() : int
+}
+
+class WindowWorker {
+show()
+}
+
+
 
 DbUser --> User
 DbOrder --> Product
+DbOrder --> Order
+DbOrder --> User
 MainMenu --> DbProduct
+DbProduct --> Product
 MainMenu --> DbUser
 MainMenu --> Message
 MainMenu --> DbOrder
-@enduml   
+MainMenu --> WindowАuthorization
+MainMenu --> WindowUser
+MainMenu --> WindowWorker
+MainMenu --> WindowAdmin
+@enduml 

@@ -1,21 +1,21 @@
 @startuml
 actor "Админ" as Admin
 
-boundary "Основное окно(Добавить пользователя)" as MainWindow
+boundary "Основное окно(Удалить пользователя)" as MainWindow
 
-control "Проверка добавления пользователя" as CheckUser
-control "Пользователь добавлен" as AddUser
-control "Окно об успешном добавлении" as SuccesfulAddUserWindow
-control "Окно о неудаче добавления" as UnsuccessfulAddUserWindow
+control "Удаление пользователя" as DeleteUser
+control "Окно об успешном удалении" as SuccessDeleteUser
+control "Окно о неудаче удаления" as UnsuccessDeleteUser
+control "Загрузка базы" as DatabaseLoad
 
 entity "База пользователей" as DatabaseUser
 
-MainWindow --> CheckUser : "Нажата кнопка "Зарегистрировать""
-CheckUser --> AddUser : "Успех"
-CheckUser --> UnsuccessfulAddUserWindow : "Неудача"
-AddUser --> DatabaseUser
-CheckUser --> SuccesfulAddUserWindow
-
+MainWindow --> DeleteUser : "Нажата кнопка "Удаление пользователя""
+MainWindow --> DatabaseLoad
+DeleteUser --> SuccessDeleteUser : "Успех"
+DeleteUser --> UnsuccessDeleteUser : "Неудача"
+SuccessDeleteUser --> DatabaseUser
+DatabaseLoad --> DatabaseUser
 
 Admin -- MainWindow
 @enduml
