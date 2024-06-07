@@ -40,7 +40,7 @@ void Database::createDatabase() {
                 "id_product INTEGER NOT NULL,"
                 "price FLOAT NOT NULL,"
                 "date_success TEXT NOT NULL,"
-                "address TEXT,"
+                "address TEXT NOT NULL,"
                 "quantity INTEGER NOT NULL,"
                 "type_delivery TEXT,"
                 "FOREIGN KEY(id_user) REFERENCES Users(ID),"
@@ -61,7 +61,7 @@ void Database::firstInsert() {
 void Database::connectToDatabase() {
     QSqlDatabase db;
     int count = 0;
-    const QString way_db = "/Users/admin/Documents/Source/DB/mdkp_database.db";
+    const QString way_db = "mdkp_database.db";
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(way_db);
     if (!db.open()) {
